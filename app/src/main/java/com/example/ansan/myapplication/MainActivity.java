@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         File myfolder = new File(folder);
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button:   //폴더생성
                 myfolder.mkdir();
                 Toast.makeText(getApplicationContext(),
@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.button5:  //파일 목록 가져오기
-                File filelist[] = new  File(path).listFiles();
+                File filelist[] = new File(path).listFiles();
                 String str = "";
-                for (int i = 0;i < filelist.length; i ++) {
-                    if(filelist[i].isDirectory())
-                        str +="<폴더>" + filelist[i].toString() + "\n";
+                for (int i = 0; i < filelist.length; i++) {
+                    if (filelist[i].isDirectory())
+                        str += "<폴더>" + filelist[i].toString() + "\n";
                     else
-                        str +="<파일>" + filelist[i].toString() + "\n";
+                        str += "<파일>" + filelist[i].toString() + "\n";
                 }
                 et.setText(str);
                 break;
