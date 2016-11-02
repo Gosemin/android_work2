@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public  void onClick(View v){
+    public  void onclick(View v){
         if (isStoragePermissionGranted() == false){
-            Toast.makeText(getApplication(),
+            Toast.makeText(getApplicationContext(),
                     "SD Card 사용불가", Toast.LENGTH_SHORT).show();
                 return;
         }
@@ -37,12 +40,28 @@ public class MainActivity extends AppCompatActivity {
         switch (v.getId()){
             case R.id.button:   //폴더생성
                 myfolder.mkdir();
-                Toast.makeText(getApplication(),
+                Toast.makeText(getApplicationContext(),
                         "폴더 생성", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.button2:  //폴더 삭제
+                myfolder.delete();
+                Toast.makeText(getApplicationContext(),
+                        "폴더 삭제", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.button3:  //파일생성
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(filename);
+                    String str = "Hellow";
+                    fos.write("안녕하세요".getBytes());
+                    fos.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 break;
             case R.id.button4:  //파일읽기
                 break;
